@@ -715,15 +715,15 @@ app.post("/azu-register", async (req, res) => {
             (err, results) => {
                 if (err) {
                          if (err.code === 'ER_DUP_ENTRY') {
-                            return res.status(400).send('<script>alert("Email already registered."); window.location.href = "./azure_Frontend/index.html";</script>');                           } 
+                            return res.status(400).send('<script>alert("Email already registered."); window.location.href = "./azure_frontend/index.html";</script>');                           } 
                            
-                            return res.status(500).send('<script>alert("Database error."); window.location.href = "./azure_Frontend/index.html";</script>');
+                            return res.status(500).send('<script>alert("Database error."); window.location.href = "./azure_frontend/index.html";</script>');
                         }
-                        res.status(200).send('<script>alert("Registration successful! Redirecting to login page..."); window.location.href = "./azure_Frontend/html/login.html";</script>');
+                        res.status(200).send('<script>alert("Registration successful! Redirecting to login page..."); window.location.href = "./azure_frontend/html/login.html";</script>');
                     }
                 );
             } catch (error) {
-                res.status(500).send('<script>alert("Server error."); window.location.href = "./azure_Frontend/index.html";</script>');
+                res.status(500).send('<script>alert("Server error."); window.location.href = "./azure_frontend/index.html";</script>');
             }
    });
 // Login  for AZURE
@@ -742,7 +742,7 @@ app.post("/azu-login", async (req, res) => {
             }
 
             if (results.length === 0) {
-                return res.status(400).send('<script>alert("user not found"); window.location.href = "./azure_Frontend/html/login.html";</script>');
+                return res.status(400).send('<script>alert("user not found"); window.location.href = "./azure_frontend/html/login.html";</script>');
             }
 
             const user = results[0];
@@ -750,10 +750,10 @@ app.post("/azu-login", async (req, res) => {
             // Compare passwords
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                return res.status(401).send('<script>alert("invalid credentials"); window.location.href = "./azure_Frontend/html/login.html";</script>');
+                return res.status(401).send('<script>alert("invalid credentials"); window.location.href = "./azure_frontend/html/login.html";</script>');
             }
             
-            res.send('<script>alert("Login successful!");window.location.href = "./azure_Frontend/html/index.html";</script>');
+            res.send('<script>alert("Login successful!");window.location.href = "./azure_frontend/html/index.html";</script>');
         });
 
     } catch (err) {
